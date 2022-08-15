@@ -1,7 +1,11 @@
 {
-    "compilerOptions": {
-      "baseUrl": "./src",
-      "checkJs": true,
-      "jsx": "react"
-    }
-  }
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "baseUrl": "./src",
+    "checkJs": false,
+    "jsx": "react",
+    "types": []
+  },
+}
+  
