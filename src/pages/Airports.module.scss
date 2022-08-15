@@ -1,0 +1,59 @@
+.airportsList {
+  margin-bottom: 20px;
+}
+  
+.airportItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 3px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  transition: .3s ease;
+  text-decoration: none;
+  color: #333;
+  background: #fff;
+  &:hover {
+    background: #eee;
+  }
+}
+
+.airportMeta {
+  display: flex;
+}
+    
+.pagination {
+  background: #1E88E5;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+  li {
+    margin: 0 1px;
+  }
+  li a {
+    display: block;
+    padding: 5px 10px;
+    background: #1E88E5;
+    color: white;
+    cursor: pointer;
+    transition: .3s ease;
+    font-size: 14px;
+    font-weight: 900;
+    &:hover {
+      background: #64B5F6;
+    }
+  }
+  li.activePage a {
+    background: #64B5F6;
+  }
+}
+
+li.previous {
+  margin-right: auto;
+}
+
+li.next {
+  margin-left: auto;
+}
+

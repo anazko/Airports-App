@@ -1,0 +1,16 @@
+.wrapper {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+select {
+  border: 1px solid #ccc;
+  padding: 10px;
+  & + & {
+    margin-left: 5px;
+  }
+}
+
+button {
+  margin-left: 5px;
+}

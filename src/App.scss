@@ -1,0 +1,45 @@
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+.App {
+  position: relative;
+  height: 100%;
+  padding-top: 60px;
+}
+
+.content {
+  padding: 40px;
+  height: 100%;
+  margin-bottom: 40px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+button, 
+.button 
+{
+  display: block;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 12px;
+  background-color: #1E88E5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: .3s ease-in;
+  &:hover {
+    background-color: #64B5F6;
+  }
+  &.red {
+    background-color: #D32F2F;
+  &.red:hover {
+    background-color: #F44336;
+  }
+  }
+}
