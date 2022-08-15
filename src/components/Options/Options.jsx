@@ -18,7 +18,11 @@ export const Options = () => {
     <div className={styles.wrapper}>
       <label>
         <p>Items per page:</p>
-        <select name="itemsPerPage" value={itemsPerPage} onChange={changeHandler}>
+        <select 
+          name="itemsPerPage" 
+          value={itemsPerPage} 
+          onChange={changeHandler}
+        >
           <option>10</option>
           <option>20</option>
           <option>30</option>

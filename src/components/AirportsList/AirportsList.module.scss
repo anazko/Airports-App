@@ -1,0 +1,22 @@
+.airportsList {
+    margin-bottom: 20px;
+}
+    
+.airportItem {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 3px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    transition: .3s ease;
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+    &:hover {
+        background: #eee;
+    }
+}
+  
+.airportMeta {
+    display: flex;
+}

@@ -12,7 +12,6 @@ export const auth = createSlice({
     initialState,
     reducers: {
         loginSucess: (state, action) => {
-            console.log(action.payload)
             state.isAuth = true
             state.username = action.payload.username
             state.access = action.payload.access

@@ -34,7 +34,7 @@ export const airports = createSlice({
   }
 })
 
-export const fetchAirports = (count = 50, page = 1, {country, type}) => {
+export const fetchAirports = ({itemsPerPage, page, country, type}) => {
   return async (dispatch) => {
     const searchParams = {}
     if (country) searchParams.country = country
@@ -44,7 +44,7 @@ export const fetchAirports = (count = 50, page = 1, {country, type}) => {
       const response = await ax.get('/airports', {
         params: {
           ...searchParams,
-          count,
+          count: itemsPerPage,
           page
         }
       })

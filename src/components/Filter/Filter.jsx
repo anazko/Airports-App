@@ -33,7 +33,6 @@ export const Filter = () => {
         id="filter-country" 
         onChange={ filterChangeHandler }
         value={filter.country}
-        defaultValue=''
       >
         <option key={'def'} value=''>Country not selected</option>
         {
@@ -49,7 +48,6 @@ export const Filter = () => {
         id="filter-type" 
         onChange={ filterChangeHandler }
         value={filter.type}
-        defaultValue=''
       >
         <option key={'def'} value=''>Type not selected</option>
         {
