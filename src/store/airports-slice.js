@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { ax } from "../axios/axios"
 
 const initialState = {
@@ -12,34 +12,14 @@ const initialState = {
   }
 }
 
-export const airports = createSlice({
-  name: 'airports',
-  initialState,
-  reducers: {
-    fetchingAirpots: (state, action) => {
-      state.isLoading = action.payload
-    },
-    fetchAirportSucess: (state, action) => {
-      state.airports = action.payload.airports
-      state.count = action.payload.count
-      state.isLoading = false
-    },
-    changeFilter: (state, action) => {
-      state.filter = { ...state.filter, ...action.payload }
-    },
-    setItemsPerPage: (state, action) => {
-      state.itemsPerPage = action.payload
-      localStorage.setItem('OPTIONS-ITEMSPERPAGE', action.payload)
-    }
-  }
-})
+export const fetchAirports = createAsyncThunk(
+  'airports/fetchAirports',
+  async ({itemsPerPage, page, country, type}, {rejectWithValue}) => {
 
-export const fetchAirports = ({itemsPerPage, page, country, type}) => {
-  return async (dispatch) => {
     const searchParams = {}
     if (country) searchParams.country = country
     if (type) searchParams.type = type
-    dispatch(fetchingAirpots(true))
+
     try {
       const response = await ax.get('/airports', {
         params: {
@@ -48,22 +28,44 @@ export const fetchAirports = ({itemsPerPage, page, country, type}) => {
           page
         }
       })
-      dispatch(fetchAirportSucess({
-        airports: response.data.results, 
-        count: response.data.count
-      }))
-      dispatch(fetchingAirpots(false))
-    } 
+      return { airports: response.data.results, count: response.data.count }
+    }
     catch(e) {
-      console.log('failed fetching airports:', e.message)
-      dispatch(fetchingAirpots(false))
+      return rejectWithValue("Error on fetching airports: " + e.message)
     }
   }
-}
+)
+
+export const airports = createSlice({
+  name: 'airports',
+  initialState,
+  reducers: {
+    changeFilter: (state, action) => {
+      state.filter = { ...state.filter, ...action.payload }
+    },
+    setItemsPerPage: (state, action) => {
+      state.itemsPerPage = action.payload
+      localStorage.setItem('OPTIONS-ITEMSPERPAGE', action.payload)
+    }
+  },
+  extraReducers: {  
+    [fetchAirports.pending]: (state) => {
+      state.isLoading = true
+    },
+    [fetchAirports.fulfilled]: (state, action) => {
+      state.airports = action.payload.airports
+      state.count = action.payload.count
+      state.isLoading = false
+    },
+    [fetchAirports.rejected]: (state, action) => {
+      console.log(action.payload)
+      state.isLoading = false
+    },
+  }
+})
 
 export const { 
-  fetchingAirpots, 
-  fetchAirportSucess, 
   changeFilter, 
-  setItemsPerPage } = airports.actions
+  setItemsPerPage 
+} = airports.actions
 export default airports.reducer
